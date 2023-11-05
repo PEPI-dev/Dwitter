@@ -16,6 +16,7 @@ const router = express.Router()
 
 
 router.post('/signup', Authvalidate,authController.signup)
+router.post('/login', authController.login)
 /*
 회원가입
     router.post('/signup', ...) // CRUD 중 Create

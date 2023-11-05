@@ -1,3 +1,5 @@
+import bcrypt from "bcrypt";
+
 let users = [
     {
         id : '1',
@@ -23,4 +25,13 @@ export async function createAccount(username,password,name,email){
     return users;
 }
 
+
+export async function login_confirm(username, password){
+    const user = users.find((user) => user.username === username);
+    if(user){
+        if(bcrypt.compareSync(password,user.password)){
+            return user
+        }
+    }
+}
 
