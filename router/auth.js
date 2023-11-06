@@ -3,32 +3,27 @@ import * as tweetController from '../controller/tweet.js'
 import * as authController from '../controller/auth.js'
 import {body,param, validationResult} from 'express-validator'
 import {validate} from "../middleware/validator.js"
-import bcrypit from "bcrypt"
+import { isAuth} from '../middleware/auth.js '
 
-const Authvalidate = [
-    body('username').trim().isLength({min:5}).withMessage('5글자 이상'), validate,
-    body('password').trim().isLength({min:5}).withMessage('5글자 이상'), validate,
-    body('email').trim().isEmail().withMessage('이메일 형식 맞추기!')
+const validateCredential = [
+    body('username').trim().notEmpty().withMessage('반드시 입력'),
+    body('password').trim().isLength({min:4}).withMessage('4자 이상'),validate
+]
+
+const validateSignup = [
+    ...validateCredential,
+    body('name').notEmpty().withMessage('name 반드시 입력'),
+    body('email').isEmail().withMessage('email 형식 확인'),
+    body('url').isURL().withMessage('URL 형식 확인').optional({nullable: true,checkFalsy: true}),validate
 ]
 
 
 const router = express.Router()
 
 
-router.post('/signup', Authvalidate,authController.signup)
-router.post('/login', authController.login)
-/*
-회원가입
-    router.post('/signup', ...) // CRUD 중 Create
-
-로그인
-    router.post('/login',...)
-
-JWT 확인
-    router.get('/me', ...)
-
-*/
-
+router.post('/signup', validateSignup,authController.signup)
+router.post('/login', validateCredential,)
+router.get('/me', isAuth,authController.me)
 
 
 

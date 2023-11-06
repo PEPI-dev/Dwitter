@@ -11,8 +11,17 @@ let users = [
     }
 ]
 
+export async function findByUsername(username){
+    return users.find((user) => user.username === username);
 
-export async function createAccount(username,password,name,email){
+}
+
+export async function findById(id){
+    return users.find((user) => user.id === id)
+}
+
+// 내방식
+export async function createAccount(username){
     const user = {
         id : "2",
         username,
@@ -24,6 +33,14 @@ export async function createAccount(username,password,name,email){
     users = [user, ...users]
     return users;
 }
+
+export async function createUser(user){
+    const created = {...user, id: '10'};
+    users.push(created)
+    return created.id;
+}
+
+
 
 
 export async function login_confirm(username, password){
