@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 let users = [
     {
         id : '1',
-        username : 'apple',
+        username : 'apple0',
         password : '$2b$10$6NVVL4gEtPh684Ncn2sCRe/LPe0u4kRkhBYSoiLx4bTGW5gwQ58Dy',
         name : '김사과',
         email : 'apple@apple.com',
@@ -20,6 +20,15 @@ export async function findById(id){
     return users.find((user) => user.id === id)
 }
 
+
+
+export async function createUser(user){
+    const created = {...user, id: '10'};
+    users.push(created)
+    return created.id;
+}
+
+
 // 내방식
 export async function createAccount(username){
     const user = {
@@ -33,15 +42,6 @@ export async function createAccount(username){
     users = [user, ...users]
     return users;
 }
-
-export async function createUser(user){
-    const created = {...user, id: '10'};
-    users.push(created)
-    return created.id;
-}
-
-
-
 
 export async function login_confirm(username, password){
     const user = users.find((user) => user.username === username);
