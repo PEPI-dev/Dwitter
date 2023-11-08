@@ -1,13 +1,12 @@
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+dotenv.config();
 
-dotenv.config()
-
-function required(key, defaultValue=undefined){
+function required(key, defaultValue=undefined) {
     const value = process.env[key] || defaultValue;
-    if (value == null){
-        throw new Error(`Key ${key} is undefined`)
+    if (value == null) {
+        throw new Error(`Key ${key} is undefined`);
     }
-    return value
+    return value;
 }
 
 export const config = {
@@ -18,8 +17,7 @@ export const config = {
     bcrypt: {
         saltRounds: parseInt(required('BCRYPT_SALT_ROUNDS', 12))
     },
-    host : {
+    host: {
         port: parseInt(required('HOST_PORT', 8080))
     }
-
-}
+};

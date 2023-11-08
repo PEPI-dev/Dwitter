@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import * as userRepository from '../data/auth.js';
-import {config} from "../config.js"
+import { config } from '../config.js';
 
 const AUTH_ERROR = { message: '인증 에러!'};
 
