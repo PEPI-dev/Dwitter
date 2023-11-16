@@ -1,0 +1,11 @@
+ID : kdhtod98
+PW : NpXmkw3wCbJgokwj
+
+
+mongodb+srv://dwitter:<password>@cluster0.guf3dwp.mongodb.net/?retryWrites=true&w=majority
+
+npm install mongodb
+
+
+dwitter
+g8aMlFlpOgq4ibBH
