@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     res.sendStatus(404);
 });
 
-connectDB().then((db) => {
+connectDB().then(() => {
     const server = app.listen(config.host.port);
     initSocket(server);
 }).catch(console.error);
